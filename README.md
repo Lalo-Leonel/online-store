@@ -19,7 +19,7 @@ Primero ejecutar el servidor: `$ npm run dev` o `$ yarn dev`
 
 1. JavaScript
 2. Express
-3. Sequilize
+3. Sequelize
 4. cors
 5. dotenv
 6. morgan
