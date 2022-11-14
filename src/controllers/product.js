@@ -17,14 +17,36 @@ exports.list = async (req, res) => {
 
   exports.listbyname = async (req, res) => {
     try {
-        const {name} = req.query
-      const products = await Product.findAll({
-        where:{
-            name:{
-                [Op.like]:`%${name}%`
+        const {name, categoryId} = req.query
+        let products;
+       if(categoryId === "todos"){
+        products = await Product.findAll({
+            where:{
+                name:{
+                    [Op.like]:`%${name}%`
+                }
             }
-        }
-      });
+        });
+       }
+       else{
+        products = await Product.findAll({
+            where:{
+                [Op.and]:[
+                    {
+                        name:{
+                            [Op.like]:`%${name}%`
+                        },
+                    },
+                    {
+                        category: categoryId
+                    }
+    
+                ]
+                
+            }
+          });
+       }
+      
       res
         .status(200)
         .json({

@@ -12,6 +12,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const productsRouter = require("./routes/product");
+const categoriesRouter = require("./routes/category");
 
 const app = express();
 
@@ -24,5 +25,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", productsRouter);
+app.use("/api/categories", categoriesRouter);
 
 module.exports = { app };
